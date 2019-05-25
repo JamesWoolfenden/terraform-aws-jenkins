@@ -18,7 +18,6 @@ could then regularly copy snapshot to the other zone
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| VpcNameTag |  | string | - | yes |
 | app_name |  | string | - | yes |
 | common_tags |  | map | - | yes |
 | env_name |  | string | - | yes |
@@ -31,7 +30,6 @@ could then regularly copy snapshot to the other zone
 | min_size |  | string | - | yes |
 | patchgroup |  | string | - | yes |
 | private_subnets |  | string | - | yes |
-| private_tag |  | string | - | yes |
 | public_subnets |  | string | - | yes |
 | route53 |  | string | - | yes |
 | sslarn |  | string | - | yes |
