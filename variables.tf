@@ -3,7 +3,11 @@ variable "instance_size" {
   type        = string
   default     = "t2.micro"
 }
-variable "jenkins_name" {}
+
+variable "jenkins_name" {
+  type = string
+}
+
 variable "max_size" {
   default = 1
   type    = number
@@ -14,9 +18,18 @@ variable "min_size" {
   type    = number
 }
 
-variable "patchgroup" {}
-variable "private_subnets" {}
-variable "public_subnets" {}
+variable "patchgroup" {
+  type = string
+
+}
+
+variable "private_subnets" {
+  type = string
+}
+
+variable "public_subnets" {
+  type = string
+}
 
 variable "route53" {
   default     = ""
@@ -28,9 +41,13 @@ variable "sslarn" {
   default = 0
 }
 
-variable "ssm_tag_name" {}
+variable "ssm_tag_name" {
+  type = string
+}
 
-variable "ssm_tag_value" {}
+variable "ssm_tag_value" {
+  type = string
+}
 
 variable "zoneid" {
   default     = ""
@@ -45,7 +62,9 @@ variable "region" {
 }
 
 
-variable "allowed_ips" {}
+variable "allowed_ips" {
+  type = string
+}
 
 variable "common_tags" {
   type = "map"
