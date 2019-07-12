@@ -18,5 +18,5 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags =var.common_tags
+  tags = var.common_tags
 }
