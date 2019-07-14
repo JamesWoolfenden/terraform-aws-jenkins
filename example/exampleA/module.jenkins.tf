@@ -1,6 +1,6 @@
 module "jenkins" {
   source              = "../../"
-  allowed_ips         = local.ip
+  ssh_allowed_ip      = local.ip
   common_tags         = var.common_tags
   jenkins_name        = var.jenkins_name
   patchgroup          = var.patchgroup

@@ -14,7 +14,7 @@ resource "aws_security_group" "jenkins" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.allowed_ips}/32"]
+    cidr_blocks = [var.ssh_allowed_ip]
   }
 
   egress {

@@ -1,91 +1,106 @@
 variable "instance_size" {
-  description="The size type for the jenkins instance"
-  type=string
-  default="t2.micro"
+  description = "The size type for the jenkins instance"
+  type        = string
+  default     = "t2.micro"
 }
-variable "jenkins_name" {}
+
+variable "jenkins_name" {
+  type = string
+}
+
 variable "max_size" {
-  default=1
-  type=number
+  default = 1
+  type    = number
 }
 
 variable "min_size" {
-  default=1
-  type=number
+  default = 1
+  type    = number
 }
 
-variable "patchgroup" {}
-variable "private_subnets" {}
-variable "public_subnets" {}
+variable "patchgroup" {
+  type = string
+
+}
+
+variable "private_subnets" {
+  type = string
+}
+
+variable "public_subnets" {
+  type = string
+}
 
 variable "route53" {
-  default=""
-  description=""
-  type=string
+  default     = ""
+  description = ""
+  type        = string
 }
 
-variable "sslarn" {
-  default=0
+variable "ssm_tag_name" {
+  type = string
 }
 
-variable "ssm_tag_name" {}
-
-variable "ssm_tag_value" {}
+variable "ssm_tag_value" {
+  type = string
+}
 
 variable "zoneid" {
-  default=""
-  description=""
-  type=string
+  default     = ""
+  description = "Route53 Zone"
+  type        = string
 }
 
-variable "region" {
-  default="eu-west-1"
-  description=""
-  type=string
+variable "ssh_allowed_ip" {
+  description = "Ssh Allowed IP"
+  type        = string
 }
-
-
-variable "allowed_ips" {}
 
 variable "common_tags" {
   type = "map"
 }
 
-variable "trusted_role_arns" {
-  default=""
-  description=""
-  type=string
-}
-
-variable "role_arns" {
-  default=""
-  description=""
-  type=string
-}
-
 variable "jenkins_ami_version" {
-  type=number
+  type = string
 }
 
 variable "elb_required" {
-  default=0
-  type=number
+  default = 0
+  type    = number
 }
 
 variable "vpc_id" {
-  default="eu-west-1"
-  description=""
-  type=string
+  description = ""
+  type        = string
 }
 
 variable "elb_connection_draining" {
-  default=false
+  type    = bool
+  default = false
 }
 
 variable "elb_internal" {
-  default=false
+  type    = bool
+  default = false
 }
 
 variable "route53_required" {
-  default=0
+  type    = number
+  default = 0
 }
+
+variable "role_arns" {
+  type    = string
+  default = ""
+}
+
+variable "trusted_role_arns" {
+  type    = string
+  default = ""
+}
+
+variable "sslarn" {
+    type    = string
+  default = ""
+}
+

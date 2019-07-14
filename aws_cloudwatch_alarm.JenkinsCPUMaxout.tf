@@ -10,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "JenkinsCPUMaxout" {
   statistic           = "Average"
   alarm_actions       = [aws_sns_topic.Jenkins-CPU.arn]
 
-  dimensions ={
+  dimensions = {
     AutoscalingGroupName = aws_autoscaling_group.jenkins.name
   }
 }

@@ -3,7 +3,7 @@ data "template_file" "backup" {
 
   vars = {
     jenkins_name = var.jenkins_name
-    accountno   = data.aws_caller_identity.current.account_id
+    accountno    = data.aws_caller_identity.current.account_id
   }
 }
 

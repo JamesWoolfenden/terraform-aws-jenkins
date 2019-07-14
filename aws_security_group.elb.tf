@@ -8,7 +8,7 @@ resource "aws_security_group" "elb" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${var.allowed_ips}/32"]
+    cidr_blocks = [var.ssh_allowed_ip]
   }
 
   egress {
@@ -18,5 +18,5 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags =var.common_tags
+  tags = var.common_tags
 }

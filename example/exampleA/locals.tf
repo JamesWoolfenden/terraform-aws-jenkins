@@ -3,5 +3,5 @@ data "http" "myip" {
 }
 
 locals {
-    ip=chomp(data.http.myip.body)
+    ip="${chomp(data.http.myip.body)/32}"
 }
