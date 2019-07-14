@@ -1,10 +1,18 @@
-# Jenkins
+# Terraform-aws-Jenkins
+
+**DO NOT USE**
 
 This module creates the Jenkins platform.
 Key features of this set-up:
 
 - Support for instance failure
 - Support for AZ failure
+
+I dont thinks there's a good reason for either of these features,  its not clear what the intention was with the roles. AWS has moved on and if you have to use Jenkins
+then Id just make it disposable otr just snapshot the disk. This was a requirement that in reality would never be needed, giving an SLA in above of the live servers.
+The AMi is via a datasource which allows you to version your amis.
+
+It's been included and maintained for reference.
 
 Noteworthy:
 The security groups for the elb must state egress or the ELB wont be fail its health checks.
@@ -43,4 +51,3 @@ could then regularly copy snapshot to the other zone
 | Name | Description |
 |------|-------------|
 | elb_dns |  |
-# terraform-aws-jenkins
