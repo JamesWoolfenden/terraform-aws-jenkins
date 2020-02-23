@@ -8,19 +8,19 @@ init:
 	rm -rf .terraform
 	terraform init -reconfigure
 
-plan: 
+plan:
 	terraform plan -refresh=true
 
 lock:
 	terraform apply -target module.statebucket.aws_dynamodb_table.dynamodb-state-lock -auto-approve
 
-build: 
+build:
 	terraform apply -auto-approve
 
-check: 
+check:
 	terraform plan -detailed-exitcode
 
-destroy: 
+destroy:
 	terraform destroy -force
 
 docs:

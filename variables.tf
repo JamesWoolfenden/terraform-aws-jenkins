@@ -100,7 +100,6 @@ variable "trusted_role_arns" {
 }
 
 variable "sslarn" {
-    type    = string
+  type    = string
   default = ""
 }
-
