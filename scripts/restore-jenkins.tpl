@@ -1,5 +1,6 @@
 #!/bin/bash -x
 # Script used in restore Jenkins
+# shellcheck disable=SC2154
 
 cd /root || exit
 
