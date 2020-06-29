@@ -20,43 +20,5 @@ Issues:
 EBS volumes are sticky to an az, need to regularly create snapshots of ebs volume nightly
 could then regularly copy snapshot to the other zone
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| aws | n/a |
-| template | n/a |
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
-| common\_tags | n/a | `map` | n/a | yes |
-| elb\_connection\_draining | n/a | `bool` | `false` | no |
-| elb\_internal | n/a | `bool` | `false` | no |
-| elb\_required | n/a | `number` | `0` | no |
-| instance\_size | The size type for the jenkins instance | `string` | `"t2.micro"` | no |
-| jenkins\_ami\_version | n/a | `string` | n/a | yes |
-| jenkins\_name | n/a | `string` | n/a | yes |
-| max\_size | n/a | `number` | `1` | no |
-| min\_size | n/a | `number` | `1` | no |
-| patchgroup | n/a | `string` | n/a | yes |
-| private\_subnets | n/a | `string` | n/a | yes |
-| public\_subnets | n/a | `string` | n/a | yes |
-| role\_arns | n/a | `string` | `""` | no |
-| route53 | n/a | `string` | `""` | no |
-| route53\_required | n/a | `number` | `0` | no |
-| ssh\_allowed\_ip | Ssh Allowed IP | `string` | n/a | yes |
-| sslarn | n/a | `string` | `""` | no |
-| ssm\_tag\_name | n/a | `string` | n/a | yes |
-| ssm\_tag\_value | n/a | `string` | n/a | yes |
-| trusted\_role\_arns | n/a | `string` | `""` | no |
-| vpc\_id | n/a | `string` | n/a | yes |
-| zoneid | Route53 Zone | `string` | `""` | no |
-
-## Outputs
-
-No output.
-
+Error: no lines in file
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

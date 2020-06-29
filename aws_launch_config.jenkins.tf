@@ -13,6 +13,7 @@ resource "aws_launch_configuration" "jenkins" {
   lifecycle {
     create_before_destroy = true
   }
+
   root_block_device {
     encrypted = var.encrypted
   }
