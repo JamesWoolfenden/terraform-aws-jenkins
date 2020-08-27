@@ -1,36 +1,48 @@
-#Makefile
+# Makefile
+ifdef OS
+   BLAT = $(powershell  -noprofile rm .\.terraform\ -force -recurse)
+else
+   ifeq ($(shell uname), Linux)
+      RM  = rm .terraform/modules/ -fr
+      BLAT= rm .terraform/ -fr
+   endif
+endif
 
 .PHONY: all
 
 all: init plan build
 
 init:
-	rm -rf .terraform
+	$(RM)
 	terraform init -reconfigure
 
 plan:
 	terraform plan -refresh=true
 
-lock:
-	terraform apply -target module.statebucket.aws_dynamodb_table.dynamodb-state-lock -auto-approve
+p:
+	terraform plan -refresh=true
+
+apply: build
 
 build:
 	terraform apply -auto-approve
 
-check:
+check: init
 	terraform plan -detailed-exitcode
 
-destroy:
+destroy: init
 	terraform destroy -force
 
 docs:
 	terraform-docs md . > README.md
 
 valid:
-	tflint
-	terraform fmt -check=true -diff=true
+	terraform fmt
+	checkov -d . --external-checks-dir ../../checkov
 
-first: init lock
-	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
-	terraform apply -target module.statebucket.local_file.remote_state -lock=false -auto-approve
-	terraform init -force-copy
+target:
+	@read -p "Enter Module to target:" MODULE;
+	terraform apply -target $$MODULE
+
+purge:
+	$(BLAT)
