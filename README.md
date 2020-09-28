@@ -23,45 +23,44 @@ EBS volumes are sticky to an az, need to regularly create snapshots of ebs volum
 could then regularly copy snapshot to the other zone
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Requirements
 
 No requirements.
 
 ## Providers
 
-| Name     | Version |
-| -------- | ------- |
-| aws      | n/a     |
-| template | n/a     |
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| template | n/a |
 
 ## Inputs
 
-| Name                    | Description                            | Type     | Default      | Required |
-| ----------------------- | -------------------------------------- | -------- | ------------ | :------: |
-| common_tags             | n/a                                    | `map`    | n/a          |   yes    |
-| elb_connection_draining | n/a                                    | `bool`   | `false`      |    no    |
-| elb_internal            | n/a                                    | `bool`   | `false`      |    no    |
-| elb_required            | n/a                                    | `number` | `0`          |    no    |
-| encrypted               | For disk volumes                       | `bool`   | `true`       |    no    |
-| instance_size           | The size type for the jenkins instance | `string` | `"t2.micro"` |    no    |
-| jenkins_ami_version     | n/a                                    | `string` | n/a          |   yes    |
-| jenkins_name            | n/a                                    | `string` | n/a          |   yes    |
-| max_size                | n/a                                    | `number` | `1`          |    no    |
-| min_size                | n/a                                    | `number` | `1`          |    no    |
-| patchgroup              | n/a                                    | `string` | n/a          |   yes    |
-| private_subnets         | n/a                                    | `string` | n/a          |   yes    |
-| public_subnets          | n/a                                    | `string` | n/a          |   yes    |
-| role_arns               | n/a                                    | `string` | `""`         |    no    |
-| route53                 | n/a                                    | `string` | `""`         |    no    |
-| route53_required        | n/a                                    | `number` | `0`          |    no    |
-| ssh_allowed_ip          | Ssh Allowed IP                         | `string` | n/a          |   yes    |
-| sslarn                  | n/a                                    | `string` | `""`         |    no    |
-| ssm_tag_name            | n/a                                    | `string` | n/a          |   yes    |
-| ssm_tag_value           | n/a                                    | `string` | n/a          |   yes    |
-| trusted_role_arns       | n/a                                    | `string` | `""`         |    no    |
-| vpc_id                  | n/a                                    | `string` | n/a          |   yes    |
-| zoneid                  | Route53 Zone                           | `string` | `""`         |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| common\_tags | n/a | `map` | n/a | yes |
+| elb\_connection\_draining | n/a | `bool` | `false` | no |
+| elb\_internal | n/a | `bool` | `false` | no |
+| elb\_required | n/a | `number` | `0` | no |
+| encrypted | For disk volumes | `bool` | `true` | no |
+| instance\_size | The size type for the jenkins instance | `string` | `"t2.micro"` | no |
+| jenkins\_ami\_version | n/a | `string` | n/a | yes |
+| jenkins\_name | n/a | `string` | n/a | yes |
+| max\_size | n/a | `number` | `1` | no |
+| min\_size | n/a | `number` | `1` | no |
+| patchgroup | n/a | `string` | n/a | yes |
+| private\_subnets | n/a | `string` | n/a | yes |
+| public\_subnets | n/a | `string` | n/a | yes |
+| role\_arns | n/a | `string` | `""` | no |
+| route53 | n/a | `string` | `""` | no |
+| route53\_required | n/a | `number` | `0` | no |
+| ssh\_allowed\_ip | Ssh Allowed IP | `string` | n/a | yes |
+| sslarn | n/a | `string` | `""` | no |
+| ssm\_tag\_name | n/a | `string` | n/a | yes |
+| ssm\_tag\_value | n/a | `string` | n/a | yes |
+| trusted\_role\_arns | n/a | `string` | `""` | no |
+| vpc\_id | n/a | `string` | n/a | yes |
+| zoneid | Route53 Zone | `string` | `""` | no |
 
 ## Outputs
 
