@@ -1,14 +1,19 @@
 terraform {
   required_providers {
     aws = {
-      version = "3.8.0"
+      version = "3.24.1"
       source  = "hashicorp/aws"
     }
 
-    http = { version = "1.1" }
+    http = {
+      version = "2.0.0"
+    source = "hashicorp/http" }
 
-    template = { version = "2.1" }
+    template = {
+      version = "2.2.0"
+    source = "hashicorp/template" }
 
-    tls = { version = "2.0" }
+    tls = { version = "3.0.0"
+    source = "hashicorp/tls" }
   }
 }

@@ -1,4 +1,5 @@
 resource "aws_elb" "jenkins" {
+  #checkov:skip=CKV_AWS_92: "Ensure the ELB has access logging enabled"
   count = var.elb_required
   name  = var.jenkins_name
 

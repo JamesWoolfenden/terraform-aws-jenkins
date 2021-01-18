@@ -7,8 +7,6 @@
 .idea
 *.iml
 *.orig
-.build-harness
-build-harness
 *.ini
 
 *~HEAD
@@ -18,3 +16,5 @@ tmp
 lambda
 *~HEAD
 *backup
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
