@@ -57,7 +57,7 @@ variable "ssh_allowed_ip" {
 }
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 variable "jenkins_ami_version" {
@@ -105,7 +105,7 @@ variable "sslarn" {
 }
 
 variable "encrypted" {
-  type=bool
-  default=true 
-  description="For disk volumes"
+  type        = bool
+  default     = true
+  description = "For disk volumes"
 }
