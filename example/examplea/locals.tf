@@ -1,7 +1,8 @@
-data "http" "myip" {
-  url = "http://ipv4.icanhazip.com"
+module "ip" {
+  source  = "JamesWoolfenden/ip/http"
+  version = "0.3.7"
 }
 
 locals {
-  ip = chomp(data.http.myip.body) / 32
+  ip = module.ip.cidr
 }

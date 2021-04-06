@@ -37,65 +37,72 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
-| template | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| ssh-key | jameswoolfenden/ssh-ssm/aws | 0.2.9 |
+| <a name="module_ssh-key"></a> [ssh-key](#module\_ssh-key) | jameswoolfenden/ssh-ssm/aws | 0.2.34 |
 
 ## Resources
 
-| Name |
-|------|
-| [aws_ami](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) |
-| [aws_autoscaling_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) |
-| [aws_availability_zones](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) |
-| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
-| [aws_elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb) |
-| [aws_iam_instance_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) |
-| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
-| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) |
-| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) |
-| [aws_launch_configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration) |
-| [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) |
-| [template_cloudinit_config](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) |
-| [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) |
+| Name | Type |
+|------|------|
+| [aws_autoscaling_group.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) | resource |
+| [aws_elb.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb) | resource |
+| [aws_iam_instance_profile.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
+| [aws_iam_policy.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_role.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.CloudWatchAgentServerPolicy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ecr-readonly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ssm-attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.sts-to-other-accounts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.writetocloudwatch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_launch_configuration.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration) | resource |
+| [aws_security_group.elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_ami.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
+| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.assume](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.trust](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [template_cloudinit_config.jenkins_master_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
+| [template_file.backup](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.cloud_init](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| common\_tags | n/a | `map(any)` | n/a | yes |
-| elb\_connection\_draining | n/a | `bool` | `false` | no |
-| elb\_internal | n/a | `bool` | `false` | no |
-| elb\_required | n/a | `number` | `0` | no |
-| encrypted | For disk volumes | `bool` | `true` | no |
-| instance\_size | The size type for the jenkins instance | `string` | `"t2.micro"` | no |
-| jenkins\_ami\_version | n/a | `string` | n/a | yes |
-| jenkins\_name | n/a | `string` | n/a | yes |
-| max\_size | n/a | `number` | `1` | no |
-| min\_size | n/a | `number` | `1` | no |
-| patchgroup | n/a | `string` | n/a | yes |
-| private\_subnets | n/a | `string` | n/a | yes |
-| public\_subnets | n/a | `string` | n/a | yes |
-| role\_arns | n/a | `string` | `""` | no |
-| route53 | n/a | `string` | `""` | no |
-| route53\_required | n/a | `number` | `0` | no |
-| ssh\_allowed\_ip | Ssh Allowed IP | `string` | n/a | yes |
-| sslarn | n/a | `string` | `""` | no |
-| ssm\_tag\_name | n/a | `string` | n/a | yes |
-| ssm\_tag\_value | n/a | `string` | n/a | yes |
-| trusted\_role\_arns | n/a | `string` | `""` | no |
-| vpc\_id | n/a | `string` | n/a | yes |
-| zoneid | Route53 Zone | `string` | `""` | no |
+| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | n/a | `map(any)` | n/a | yes |
+| <a name="input_elb_connection_draining"></a> [elb\_connection\_draining](#input\_elb\_connection\_draining) | n/a | `bool` | `false` | no |
+| <a name="input_elb_internal"></a> [elb\_internal](#input\_elb\_internal) | n/a | `bool` | `false` | no |
+| <a name="input_elb_required"></a> [elb\_required](#input\_elb\_required) | n/a | `number` | `0` | no |
+| <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | For disk volumes | `bool` | `true` | no |
+| <a name="input_instance_size"></a> [instance\_size](#input\_instance\_size) | The size type for the jenkins instance | `string` | `"t2.micro"` | no |
+| <a name="input_jenkins_ami_version"></a> [jenkins\_ami\_version](#input\_jenkins\_ami\_version) | n/a | `string` | n/a | yes |
+| <a name="input_jenkins_name"></a> [jenkins\_name](#input\_jenkins\_name) | n/a | `string` | n/a | yes |
+| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | n/a | `number` | `1` | no |
+| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | n/a | `number` | `1` | no |
+| <a name="input_patchgroup"></a> [patchgroup](#input\_patchgroup) | n/a | `string` | n/a | yes |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `string` | n/a | yes |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `string` | n/a | yes |
+| <a name="input_role_arns"></a> [role\_arns](#input\_role\_arns) | n/a | `string` | `""` | no |
+| <a name="input_route53"></a> [route53](#input\_route53) | n/a | `string` | `""` | no |
+| <a name="input_route53_required"></a> [route53\_required](#input\_route53\_required) | n/a | `number` | `0` | no |
+| <a name="input_ssh_allowed_ip"></a> [ssh\_allowed\_ip](#input\_ssh\_allowed\_ip) | Ssh Allowed IP | `string` | n/a | yes |
+| <a name="input_sslarn"></a> [sslarn](#input\_sslarn) | n/a | `string` | `""` | no |
+| <a name="input_ssm_tag_name"></a> [ssm\_tag\_name](#input\_ssm\_tag\_name) | n/a | `string` | n/a | yes |
+| <a name="input_ssm_tag_value"></a> [ssm\_tag\_value](#input\_ssm\_tag\_value) | n/a | `string` | n/a | yes |
+| <a name="input_trusted_role_arns"></a> [trusted\_role\_arns](#input\_trusted\_role\_arns) | n/a | `string` | `""` | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
+| <a name="input_zoneid"></a> [zoneid](#input\_zoneid) | Route53 Zone | `string` | `""` | no |
 
 ## Outputs
 
-No output.
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Help

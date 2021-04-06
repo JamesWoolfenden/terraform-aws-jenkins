@@ -9,5 +9,6 @@ module "jenkins" {
   ssm_tag_name        = "Usage"
   ssm_tag_value       = "Development"
   jenkins_ami_version = 1
-  vpc_id              = "vpc-510efa34"
+  vpc_id              = var.vpc_id
+  elb_required        = 1
 }
