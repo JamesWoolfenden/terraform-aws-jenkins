@@ -23,6 +23,7 @@ resource "aws_elb" "jenkins" {
     interval            = 30
   }
 
+# tfsec:ignore:AWS005
   internal = var.elb_internal
 
   security_groups = [
