@@ -44,7 +44,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_ssh-key"></a> [ssh-key](#module\_ssh-key) | jameswoolfenden/ssh-ssm/aws | 0.2.45 |
+| <a name="module_ssh-key"></a> [ssh-key](#module\_ssh-key) | jameswoolfenden/ssh-ssm/aws | 0.2.46 |
 
 ## Resources
 
