@@ -4,6 +4,7 @@ resource "aws_security_group" "jenkins" {
   vpc_id      = var.vpc_id
 
   ingress {
+    description     = "Jenkins admin port"
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
@@ -11,6 +12,7 @@ resource "aws_security_group" "jenkins" {
   }
 
   ingress {
+    description = "SSH port"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -18,9 +20,10 @@ resource "aws_security_group" "jenkins" {
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    description = "Allow outbound"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     # tfsec:ignore:AWS009
     cidr_blocks = ["0.0.0.0/0"]
   }
