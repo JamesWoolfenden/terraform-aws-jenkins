@@ -17,4 +17,8 @@ resource "aws_launch_configuration" "jenkins" {
   root_block_device {
     encrypted = var.encrypted
   }
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
 }
