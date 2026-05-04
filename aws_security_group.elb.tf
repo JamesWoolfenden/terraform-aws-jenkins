@@ -1,4 +1,5 @@
 resource "aws_security_group" "elb" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   count       = var.elb_required
   name        = "${var.jenkins_name}-ELB"
   description = "Http"

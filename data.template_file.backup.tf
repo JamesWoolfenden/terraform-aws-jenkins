@@ -6,7 +6,6 @@ data "template_file" "backup" {
     accountno    = data.aws_caller_identity.current.account_id
   }
 }
-
 data "template_file" "cloud_init" {
   template = file("${path.module}/scripts/cloud-config.tpl")
 
@@ -14,7 +13,6 @@ data "template_file" "cloud_init" {
     hostname = var.jenkins_name
   }
 }
-
 data "template_cloudinit_config" "jenkins_master_user_data" {
   gzip          = false
   base64_encode = false

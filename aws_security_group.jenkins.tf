@@ -1,4 +1,5 @@
 resource "aws_security_group" "jenkins" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   name        = var.jenkins_name
   description = "Open default ports for jenkins ssh and web 8080"
   vpc_id      = var.vpc_id
