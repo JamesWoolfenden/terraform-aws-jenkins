@@ -127,14 +127,21 @@ resource "aws_iam_policy" "terraform_pike" {
             "Action": [
                 "autoscaling:CreateAutoScalingGroup",
                 "autoscaling:CreateLaunchConfiguration",
+                "autoscaling:CreateOrUpdateTags",
                 "autoscaling:DeleteAutoScalingGroup",
                 "autoscaling:DeleteLaunchConfiguration",
+                "autoscaling:DeleteTags",
+                "autoscaling:Describe*",
                 "autoscaling:DescribeAutoScalingGroups",
                 "autoscaling:DescribeLaunchConfigurations",
                 "autoscaling:DescribeScalingActivities",
+                "autoscaling:DisableMetricsCollection",
+                "autoscaling:EnableMetricsCollection",
                 "autoscaling:UpdateAutoScalingGroup"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor1",
@@ -142,19 +149,30 @@ resource "aws_iam_policy" "terraform_pike" {
             "Action": [
                 "ec2:AuthorizeSecurityGroupEgress",
                 "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:CreateKeyPair",
                 "ec2:CreateSecurityGroup",
                 "ec2:CreateTags",
+                "ec2:DeleteKeyPair",
+                "ec2:DeleteNetworkInterface",
                 "ec2:DeleteSecurityGroup",
                 "ec2:DeleteTags",
+                "ec2:Describe*",
                 "ec2:DescribeAccountAttributes",
                 "ec2:DescribeAvailabilityZones",
                 "ec2:DescribeImages",
+                "ec2:DescribeKeyPairs",
                 "ec2:DescribeNetworkInterfaces",
                 "ec2:DescribeSecurityGroups",
+                "ec2:DetachNetworkInterface",
+                "ec2:Get*",
+                "ec2:ImportKeyPair",
                 "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress"
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:RunInstances"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor2",
@@ -165,13 +183,17 @@ resource "aws_iam_policy" "terraform_pike" {
                 "elasticloadbalancing:CreateLoadBalancer",
                 "elasticloadbalancing:CreateLoadBalancerListeners",
                 "elasticloadbalancing:DeleteLoadBalancer",
+                "elasticloadbalancing:Describe*",
                 "elasticloadbalancing:DescribeLoadBalancerAttributes",
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeTags",
                 "elasticloadbalancing:ModifyLoadBalancerAttributes",
-                "elasticloadbalancing:RemoveTags"
+                "elasticloadbalancing:RemoveTags",
+                "elasticloadbalancing:SetSecurityGroups"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor3",
@@ -198,7 +220,51 @@ resource "aws_iam_policy" "terraform_pike" {
                 "iam:RemoveRoleFromInstanceProfile",
                 "iam:UpdateRoleDescription"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "managed-fleets:DeleteAutoScalingGroup",
+                "managed-fleets:DeregisterAutoScalingGroup",
+                "managed-fleets:Get*",
+                "managed-fleets:RegisterAutoScalingGroup",
+                "managed-fleets:UpdateAutoScalingGroup"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor6",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:AddTagsToResource",
+                "ssm:DeleteParameter",
+                "ssm:DescribeParameters",
+                "ssm:Get*",
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:ListTagsForResource",
+                "ssm:PutParameter",
+                "ssm:RemoveTagsFromResource"
+            ],
+            "Resource": [
+                "*"
+            ]
         }
     ]
 })
