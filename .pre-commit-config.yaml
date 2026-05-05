@@ -37,6 +37,10 @@ repos:
     hooks:
       - id: terraform-fmt
       - id: tf2docs
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
   - repo: https://github.com/bridgecrewio/checkov
     rev: e52a901a3829d818d20c9b75e544845c8b756968 # 3.2.526
     hooks:
