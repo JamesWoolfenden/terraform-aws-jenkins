@@ -87,3 +87,9 @@ variable "encrypted" {
   default     = true
   description = "For disk volumes"
 }
+
+variable "root_device_name" {
+  type        = string
+  default     = "/dev/xvda"
+  description = "Root EBS device name for the launch template"
+}

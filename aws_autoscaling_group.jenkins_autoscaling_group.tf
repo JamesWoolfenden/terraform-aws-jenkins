@@ -1,11 +1,15 @@
 resource "aws_autoscaling_group" "jenkins" {
-  vpc_zone_identifier  = [var.private_subnets]
-  name                 = var.jenkins_name
-  min_size             = var.min_size
-  max_size             = var.max_size
-  force_delete         = true
-  launch_configuration = aws_launch_configuration.jenkins.name
-  load_balancers       = [aws_elb.jenkins[0].name]
+  vpc_zone_identifier = [var.private_subnets]
+  name                = var.jenkins_name
+  min_size            = var.min_size
+  max_size            = var.max_size
+  force_delete        = true
+  load_balancers      = [aws_elb.jenkins[0].name]
+
+  launch_template {
+    id      = aws_launch_template.jenkins.id
+    version = "$Latest"
+  }
 
   enabled_metrics = [
     "GroupMinSize",

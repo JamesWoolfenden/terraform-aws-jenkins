@@ -1,5 +1,6 @@
 resource "aws_security_group" "elb" {
   # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
+  # checkov:skip=CKV2_AWS_5: SG is attached to aws_elb.jenkins; count conditional prevents static analysis detection
   count       = var.elb_required
   name        = "${var.jenkins_name}-ELB"
   description = "Http"

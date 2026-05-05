@@ -6,3 +6,5 @@ external-modules-download-path: .external_modules
 framework:
   - terraform
   - secrets
+skip-check:
+  - CKV_AWS_337  # external terraform-aws-ssh-ssm module has no kms_key_id input
