@@ -45,10 +45,16 @@ repos:
     rev: e52a901a3829d818d20c9b75e544845c8b756968 # 3.2.526
     hooks:
       - id: checkov
+        files: .
         verbose: true
-        entry: checkov -d example/examplea --external-checks-dir checkov --download-external-modules true
+        entry: checkov -d example/examplea --external-checks-dir checkov --download-external-modules true --compact
   - repo: https://github.com/jameswoolfenden/pike
     rev: d043242b9e1733e9e5a67c20bb87c05a4d563596 # v0.4.1
     hooks:
       - id: pike-docs-go
         args: ["readme", "-d", ".", "-i"]
+  - repo: https://github.com/jameswoolfenden/ghat
+    rev: c037c5f7bbc8670607523ea6a7aefd978fc0bd7d # v0.1.27
+    hooks:
+      - id: ghat-go
+      - id: ghat-go-sift

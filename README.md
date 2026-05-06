@@ -1,7 +1,7 @@
 # terraform-aws-jenkins
 
-[![Build Status](https://github.com/JamesWoolfenden/terraform-aws-Jenkins/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-aws-Jenkins)
-[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-Jenkins.svg)](https://github.com/JamesWoolfenden/terraform-aws-Jenkins/releases/latest)
+[![Build Status](https://github.com/JamesWoolfenden/terraform-aws-jenkins/workflows/Verify/badge.svg?branch=main)](https://github.com/JamesWoolfenden/terraform-aws-jenkins)
+[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-jenkins.svg)](https://github.com/JamesWoolfenden/terraform-aws-jenkins/releases/latest)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/JamesWoolfenden/terraform-aws-jenkins.svg?label=latest)](https://github.com/JamesWoolfenden/terraform-aws-jenkins/releases/latest)
 ![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.14.0-blue.svg)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/JamesWoolfenden/terraform-aws-jenkins/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-aws-jenkins&benchmark=CIS+AWS+V1.2)
@@ -36,20 +36,20 @@ No requirements.
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.43.0 |
-| <a name="provider_template"></a> [template](#provider\_template) | 2.2.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_ssh-key"></a> [ssh-key](#module\_ssh-key) | git::https://github.com/jameswoolfenden/terraform-aws-ssh-ssm.git | d23adb4769e0b9ec3d42f1b456303b532440497f |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_autoscaling_group.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) | resource |
 | [aws_elb.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb) | resource |
 | [aws_iam_instance_profile.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
@@ -75,7 +75,7 @@ No requirements.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | n/a | `map(any)` | n/a | yes |
 | <a name="input_elb_connection_draining"></a> [elb\_connection\_draining](#input\_elb\_connection\_draining) | n/a | `bool` | `false` | no |
 | <a name="input_elb_internal"></a> [elb\_internal](#input\_elb\_internal) | n/a | `bool` | `false` | no |
