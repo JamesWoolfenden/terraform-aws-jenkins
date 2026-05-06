@@ -37,14 +37,14 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
-| <a name="provider_template"></a> [template](#provider\_template) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.43.0 |
+| <a name="provider_template"></a> [template](#provider\_template) | 2.2.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_ssh-key"></a> [ssh-key](#module\_ssh-key) | jameswoolfenden/ssh-ssm/aws | 0.2.46 |
+| <a name="module_ssh-key"></a> [ssh-key](#module\_ssh-key) | git::https://github.com/jameswoolfenden/terraform-aws-ssh-ssm.git | d23adb4769e0b9ec3d42f1b456303b532440497f |
 
 ## Resources
 
@@ -60,7 +60,7 @@ No requirements.
 | [aws_iam_role_policy_attachment.ssm-attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.sts-to-other-accounts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.writetocloudwatch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_launch_configuration.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration) | resource |
+| [aws_launch_template.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template) | resource |
 | [aws_security_group.elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_ami.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
@@ -90,6 +90,7 @@ No requirements.
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `string` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `string` | n/a | yes |
 | <a name="input_role_arns"></a> [role\_arns](#input\_role\_arns) | n/a | `string` | `""` | no |
+| <a name="input_root_device_name"></a> [root\_device\_name](#input\_root\_device\_name) | Root EBS device name for the launch template | `string` | `"/dev/xvda"` | no |
 | <a name="input_route53"></a> [route53](#input\_route53) | n/a | `string` | `""` | no |
 | <a name="input_route53_required"></a> [route53\_required](#input\_route53\_required) | n/a | `number` | `0` | no |
 | <a name="input_ssh_allowed_ip"></a> [ssh\_allowed\_ip](#input\_ssh\_allowed\_ip) | Ssh Allowed IP | `string` | n/a | yes |
