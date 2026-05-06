@@ -57,4 +57,5 @@ repos:
     rev: c037c5f7bbc8670607523ea6a7aefd978fc0bd7d # v0.1.27
     hooks:
       - id: ghat-go
+        entry: ghat swot -d .github
       - id: ghat-go-sift
