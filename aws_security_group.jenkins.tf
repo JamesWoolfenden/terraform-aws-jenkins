@@ -1,5 +1,4 @@
 resource "aws_security_group" "jenkins" {
-  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   name        = var.jenkins_name
   description = "Open default ports for jenkins ssh and web 8080"
   vpc_id      = var.vpc_id
@@ -21,10 +20,10 @@ resource "aws_security_group" "jenkins" {
   }
 
   egress {
-    description = "Allow outbound"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    description = "HTTPS for plugins, SCM, package repos, AWS APIs and SSM"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     # tfsec:ignore:AWS009
     cidr_blocks = ["0.0.0.0/0"]
   }

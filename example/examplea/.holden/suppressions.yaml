@@ -1,0 +1,77 @@
+suppressions:
+  - policy_id: HLD_AWS_089
+    resource_id: module.jenkins.aws_elb.jenkins
+    reason: "Classic ELB access logs need a caller-supplied S3 bucket with the ELB log-delivery policy, which this module does not manage. Resolved together with the ALB migration (see HLD_AWS_229)."
+    expires: "2027-02-12"
+
+  - policy_id: HLD_AWS_229
+    resource_id: module.jenkins.aws_elb.jenkins
+    reason: "Migrating aws_elb to aws_lb replaces the load balancer and changes the module's resources, a breaking change for existing consumers. Tracked as a follow-up migration."
+    expires: "2027-02-12"
+
+  - policy_id: HLD_AWS_239
+    resource_id: module.jenkins.aws_elb.jenkins
+    reason: "var.sslarn defaults to empty only because the ELB is optional (elb_required=0); when set, a validation block enforces an ACM certificate ARN, which is what this policy requires."
+
+  - policy_id: HLD_AWS_244
+    resource_id: module.jenkins.aws_elb.jenkins
+    reason: "TLS terminates at the ELB; the Jenkins backend serves plain HTTP on 8080 and the ELB security group only forwards to the VPC CIDR. Backend TLS needs Jenkins itself to be configured for HTTPS."
+
+  - policy_id: HLD_AWS_316
+    resource_id: module.jenkins.aws_iam_role.jenkins
+    reason: "The trust statement lists ec2.amazonaws.com (exempt: EC2 never sends aws:SourceAccount/aws:SourceArn when assuming an instance-profile role, so the condition would stop the instance obtaining credentials) together with s3.amazonaws.com and ssm.amazonaws.com, which are kept for existing integrations; scoping those needs the callers' account/ARNs. The cross-account principal is caller-supplied via var.trusted_role_arns."
+
+  - policy_id: HLD_TF_026
+    resource_id: module.jenkins
+    reason: "The example intentionally calls the module under test via the relative path ../../ so it always exercises the working tree."
+
+  - policy_id: HLD_TF_029
+    resource_id: workspace
+    reason: "The permission count comes from the Jenkins module's IAM and EC2/ELB footprint, a single cohesive module; splitting it would not reduce what the deployment needs."
+
+  - policy_id: HLD_TF_065
+    resource_id: module.ip
+    reason: "Intentional thin wrapper: terraform-http-ip exists solely to expose the caller's public IP as a CIDR from one data.http lookup, and is shared across several repos."
+
+  - policy_id: HLD_TF_073
+    resource_id: module.jenkins
+    reason: "Counts the resource types of the composed terraform-aws-ssh-ssm dependency (tls_private_key, aws_key_pair, aws_ssm_parameter) on top of the module's own 13; the module itself is cohesive."
+
+  # Style findings in the terraform-aws-ssh-ssm dependency, which this repo does
+  # not own the source of here; fix upstream. HLD_TF_050 (sensitive-named
+  # variables/outputs) is suppressed separately below, with its own reason.
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_016
+    reason: "Style finding in the terraform-aws-ssh-ssm dependency (hyphenated resource labels); renaming changes its state addresses, fix upstream."
+
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_021
+    reason: "Style finding in the terraform-aws-ssh-ssm dependency (no variable validation); fix upstream."
+
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_047
+    reason: "Style finding in the terraform-aws-ssh-ssm dependency (hyphenated output name); renaming is a breaking interface change, fix upstream."
+
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_053
+    reason: "Style finding in the terraform-aws-ssh-ssm dependency (count.index in resource names); fix upstream."
+
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_061
+    reason: "Style finding in the terraform-aws-ssh-ssm dependency (legacy list/splat syntax); fix upstream."
+
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_075
+    reason: "Style finding in the terraform-aws-ssh-ssm dependency (count with length() instead of for_each); changing it re-addresses its resources, fix upstream."
+
+  - module: module.jenkins.module.ssh-key
+    policy_id: HLD_TF_050
+    reason: "False positive in the terraform-aws-ssh-ssm dependency: output 'keys' is aws_key_pair.ssh.*.key_name, the EC2 key pair names, not key material (its private_key_pem/public_key_pem outputs are already sensitive). holden matches on the word 'key' in the name; an edge-aware check is a follow-up."
+
+  - policy_id: HLD_AWS_267
+    resource_id: module.jenkins.aws_launch_template.jenkins
+    reason: "Undecidable: user_data is base64encode of a template_cloudinit_config whose parts are rendered with variables and a data source. Verified safe: scripts/*.tpl contain no AKIA keys or private key material."
+
+  - policy_id: HLD_AWS_276
+    resource_id: module.jenkins.aws_iam_role.jenkins
+    reason: "Undecidable: the trust principal is var.trusted_role_arns, reached through a synthesized policy document. Its validation restricts it to empty or an account root/role/user ARN, so a wildcard principal is rejected."

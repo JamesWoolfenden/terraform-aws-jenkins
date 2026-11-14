@@ -5,7 +5,6 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/JamesWoolfenden/terraform-aws-jenkins.svg?label=latest)](https://github.com/JamesWoolfenden/terraform-aws-jenkins/releases/latest)
 ![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.14.0-blue.svg)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![checkov](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
 
 ---
 
@@ -53,51 +52,46 @@ No requirements.
 | [aws_iam_instance_profile.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_policy.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.CloudWatchAgentServerPolicy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.ecr-readonly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.ssm-attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.sts-to-other-accounts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.cloudwatch_agent_server_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ecr_readonly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.ssm_attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.sts_to_other_accounts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.writetocloudwatch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_launch_template.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template) | resource |
 | [aws_security_group.elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_ami.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.assume](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.trust](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_vpc.jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
 | [template_cloudinit_config.jenkins_master_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config) | data source |
-| [template_file.backup](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
-| [template_file.cloud_init](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | n/a | `map(any)` | n/a | yes |
-| <a name="input_elb_connection_draining"></a> [elb\_connection\_draining](#input\_elb\_connection\_draining) | n/a | `bool` | `false` | no |
-| <a name="input_elb_internal"></a> [elb\_internal](#input\_elb\_internal) | n/a | `bool` | `false` | no |
-| <a name="input_elb_required"></a> [elb\_required](#input\_elb\_required) | n/a | `number` | `0` | no |
+| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Tags applied to all resources that support them | `map(any)` | n/a | yes |
+| <a name="input_elb_connection_draining"></a> [elb\_connection\_draining](#input\_elb\_connection\_draining) | Whether the load balancer drains connections from deregistering instances | `bool` | `false` | no |
+| <a name="input_elb_internal"></a> [elb\_internal](#input\_elb\_internal) | Whether the load balancer is internal (true) or internet-facing (false) | `bool` | `false` | no |
+| <a name="input_elb_required"></a> [elb\_required](#input\_elb\_required) | Set to 1 to create the classic load balancer and its security group, 0 to skip | `number` | `0` | no |
 | <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | For disk volumes | `bool` | `true` | no |
 | <a name="input_instance_size"></a> [instance\_size](#input\_instance\_size) | The size type for the jenkins instance | `string` | `"t2.micro"` | no |
-| <a name="input_jenkins_ami_version"></a> [jenkins\_ami\_version](#input\_jenkins\_ami\_version) | n/a | `string` | n/a | yes |
-| <a name="input_jenkins_name"></a> [jenkins\_name](#input\_jenkins\_name) | n/a | `string` | n/a | yes |
-| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | n/a | `number` | `1` | no |
-| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | n/a | `number` | `1` | no |
-| <a name="input_patchgroup"></a> [patchgroup](#input\_patchgroup) | n/a | `string` | n/a | yes |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `string` | n/a | yes |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `string` | n/a | yes |
-| <a name="input_role_arns"></a> [role\_arns](#input\_role\_arns) | n/a | `string` | `""` | no |
+| <a name="input_jenkins_ami_version"></a> [jenkins\_ami\_version](#input\_jenkins\_ami\_version) | Version suffix of the jenkins-master AMI to launch (matched as `jenkins-master-<version>*`) | `string` | n/a | yes |
+| <a name="input_jenkins_name"></a> [jenkins\_name](#input\_jenkins\_name) | Name of the Jenkins deployment, used for the ASG, ELB, security groups, IAM role and tags | `string` | n/a | yes |
+| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | Maximum number of instances in the Jenkins autoscaling group | `number` | `1` | no |
+| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | Minimum number of instances in the Jenkins autoscaling group | `number` | `1` | no |
+| <a name="input_patchgroup"></a> [patchgroup](#input\_patchgroup) | SSM Patch Manager patch group tag value for the Jenkins instances | `string` | n/a | yes |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | Subnet ID the Jenkins autoscaling group launches instances into | `string` | n/a | yes |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | Subnet ID the Jenkins load balancer is placed in | `string` | n/a | yes |
+| <a name="input_role_arns"></a> [role\_arns](#input\_role\_arns) | ARN of the role in another account that the Jenkins role is allowed to assume | `string` | `""` | no |
 | <a name="input_root_device_name"></a> [root\_device\_name](#input\_root\_device\_name) | Root EBS device name for the launch template | `string` | `"/dev/xvda"` | no |
-| <a name="input_route53"></a> [route53](#input\_route53) | n/a | `string` | `""` | no |
-| <a name="input_route53_required"></a> [route53\_required](#input\_route53\_required) | n/a | `number` | `0` | no |
-| <a name="input_ssh_allowed_ip"></a> [ssh\_allowed\_ip](#input\_ssh\_allowed\_ip) | Ssh Allowed IP | `string` | n/a | yes |
-| <a name="input_sslarn"></a> [sslarn](#input\_sslarn) | n/a | `string` | `""` | no |
-| <a name="input_ssm_tag_name"></a> [ssm\_tag\_name](#input\_ssm\_tag\_name) | n/a | `string` | n/a | yes |
-| <a name="input_ssm_tag_value"></a> [ssm\_tag\_value](#input\_ssm\_tag\_value) | n/a | `string` | n/a | yes |
-| <a name="input_trusted_role_arns"></a> [trusted\_role\_arns](#input\_trusted\_role\_arns) | n/a | `string` | `""` | no |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
-| <a name="input_zoneid"></a> [zoneid](#input\_zoneid) | Route53 Zone | `string` | `""` | no |
+| <a name="input_ssh_allowed_ip"></a> [ssh\_allowed\_ip](#input\_ssh\_allowed\_ip) | CIDR block allowed to reach SSH on the instance and HTTPS on the load balancer | `string` | n/a | yes |
+| <a name="input_sslarn"></a> [sslarn](#input\_sslarn) | ARN of the ACM certificate used by the HTTPS listener on the load balancer | `string` | `""` | no |
+| <a name="input_ssm_tag_name"></a> [ssm\_tag\_name](#input\_ssm\_tag\_name) | Tag key applied to the instances for targeting by SSM | `string` | n/a | yes |
+| <a name="input_ssm_tag_value"></a> [ssm\_tag\_value](#input\_ssm\_tag\_value) | Tag value applied to the instances for targeting by SSM | `string` | n/a | yes |
+| <a name="input_trusted_role_arns"></a> [trusted\_role\_arns](#input\_trusted\_role\_arns) | ARN of the principal in another account that is trusted to assume the Jenkins role | `string` | `""` | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC Jenkins is deployed into | `string` | n/a | yes |
 
 ## Outputs
 
@@ -112,6 +106,7 @@ This is the policy required to build this project:
 The Terraform resource required is:
 
 ```golang
+# apply role — full permissions for terraform apply
 resource "aws_iam_policy" "terraform_pike" {
   name_prefix = "terraform_pike"
   path        = "/"
@@ -157,7 +152,6 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:DeleteTags",
                 "ec2:Describe*",
                 "ec2:DescribeAccountAttributes",
-                "ec2:DescribeAvailabilityZones",
                 "ec2:DescribeImages",
                 "ec2:DescribeInstanceTypes",
                 "ec2:DescribeKeyPairs",
@@ -165,6 +159,8 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:DescribeLaunchTemplates",
                 "ec2:DescribeNetworkInterfaces",
                 "ec2:DescribeSecurityGroups",
+                "ec2:DescribeVpcAttribute",
+                "ec2:DescribeVpcs",
                 "ec2:DetachNetworkInterface",
                 "ec2:Get*",
                 "ec2:ImportKeyPair",
@@ -263,6 +259,59 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ssm:ListTagsForResource",
                 "ssm:PutParameter",
                 "ssm:RemoveTagsFromResource"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+})
+}
+
+# plan role — read-only permissions for terraform plan
+resource "aws_iam_policy" "terraform_pike_plan" {
+  name_prefix = "terraform_pike_plan"
+  path        = "/"
+  description = "Pike Autogenerated policy from IAC"
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:Describe*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeImages"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:Describe*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt"
             ],
             "Resource": [
                 "*"

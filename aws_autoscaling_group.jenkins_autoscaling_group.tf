@@ -6,9 +6,12 @@ resource "aws_autoscaling_group" "jenkins" {
   force_delete        = true
   load_balancers      = [aws_elb.jenkins[0].name]
 
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+
   launch_template {
     id      = aws_launch_template.jenkins.id
-    version = "$Latest"
+    version = "$Default"
   }
 
   enabled_metrics = [
