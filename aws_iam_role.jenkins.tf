@@ -4,13 +4,15 @@ resource "aws_iam_role" "jenkins" {
   description = "Allows CICD instance to STS to other JIM Accounts"
 
   assume_role_policy = data.aws_iam_policy_document.trust.json
+
+  max_session_duration = 3600
 }
 # attaching the AWS managed roles
-resource "aws_iam_role_policy_attachment" "ssm-attach" {
+resource "aws_iam_role_policy_attachment" "ssm_attach" {
   role       = aws_iam_role.jenkins.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
-resource "aws_iam_role_policy_attachment" "ecr-readonly" {
+resource "aws_iam_role_policy_attachment" "ecr_readonly" {
   role       = aws_iam_role.jenkins.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }

@@ -1,0 +1,24 @@
+suppressions:
+  - policy_id: HLD_AWS_316
+    resource_id: aws_iam_role.jenkins
+    reason: "The trust statement lists ec2.amazonaws.com (exempt: EC2 never sends aws:SourceAccount/aws:SourceArn when assuming an instance-profile role, so the condition would stop the instance obtaining credentials) together with s3.amazonaws.com and ssm.amazonaws.com, which are kept for existing integrations; scoping those needs the callers' account/ARNs. The cross-account principal is caller-supplied via var.trusted_role_arns."
+
+  - policy_id: HLD_AWS_372
+    resource_id: data.aws_iam_policy_document.assume
+    reason: "Resource is var.role_arns, the specific cross-account role ARN supplied by the caller (validated as an IAM role ARN). The module cannot know it, so the scan sees it as unscoped."
+
+  - policy_id: HLD_AWS_372
+    resource_id: data.aws_iam_policy_document.trust
+    reason: "Trust principals are the caller-supplied var.trusted_role_arns plus AWS service principals; no condition key can scope sts:AssumeRole for the EC2 service principal (see the HLD_AWS_316 suppression), and the account principal is caller-defined."
+
+  - policy_id: HLD_TF_029
+    resource_id: workspace
+    reason: "The permission count comes from the Jenkins module's IAM and EC2/ELB footprint, a single cohesive module; splitting it would not reduce what the deployment needs."
+
+  - policy_id: HLD_AWS_267
+    resource_id: aws_launch_template.jenkins
+    reason: "Undecidable: user_data is base64encode of a template_cloudinit_config whose parts are rendered with variables and a data source. Verified safe: scripts/*.tpl contain no AKIA keys or private key material."
+
+  - policy_id: HLD_AWS_276
+    resource_id: aws_iam_role.jenkins
+    reason: "Undecidable: the trust principal is var.trusted_role_arns, reached through a synthesized policy document. Its validation restricts it to empty or an account root/role/user ARN, so a wildcard principal is rejected."

@@ -1,6 +1,4 @@
 resource "aws_security_group" "elb" {
-  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
-  # checkov:skip=CKV2_AWS_5: SG is attached to aws_elb.jenkins; count conditional prevents static analysis detection
   count       = var.elb_required
   name        = "${var.jenkins_name}-ELB"
   description = "Http"
@@ -15,12 +13,11 @@ resource "aws_security_group" "elb" {
   }
 
   egress {
-    description = "Allow outbound"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    # tfsec:ignore:AWS009
-    cidr_blocks = ["0.0.0.0/0"]
+    description = "Forward to Jenkins on its web port within the VPC"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = [data.aws_vpc.jenkins.cidr_block]
   }
 
   tags = var.common_tags
